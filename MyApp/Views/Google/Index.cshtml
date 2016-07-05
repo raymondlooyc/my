@@ -1,0 +1,252 @@
+﻿@{
+    ViewBag.Title = "";
+}
+<style type="text/css">
+    .google-image-result > ul > li
+    {
+        list-style: none;
+        float: left;
+        width: 200px;
+        height: 200px;
+        display: block;
+        border: 1px solid #ddd;
+        position:relative;
+        overflow:hidden;
+        text-align:center;
+    }
+
+        .google-image-result > ul > li > img
+        {
+            max-height:100%;
+            max-width:100%;
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        .google-image-result > ul > li > span
+        {
+            position:absolute;
+            bottom:0;
+            left:0;
+            width:100%;
+            height:15px;
+            background-color:rgba(255,255,255,5);
+        }
+</style>
+<script src="https://www.google.com/jsapi"></script>
+<div class="google-api-status">
+    <span class="label">Google API Status</span>
+    <span class="label">Loading</span>
+    <div class="button button-search">Search</div>
+</div>
+<div class="google-image-result">
+    <ul>
+
+    </ul>
+</div>
+<script type="text/javascript">
+    var anime = [
+        'Air Gear',
+        'Angelic Layer',
+        'Astro Boy',
+        'Atashinchi',
+        'Bakugan Battle Brawlers',
+        'Bakugan Battle Brawlers: New Vestroia',
+        'Bakusō Kyōdai Let\'s & Go!!',
+        'Basilisk',
+        'Battle B-Daman',
+        'Beyblade',
+        'Bakegyamon',
+        'Bleach',
+        'Blue Dragon',
+        'Captain Kuppa',
+        'Captain Tsubasa',
+        'Cardcaptor Sakura',
+        'Cardfight!! Vanguard',
+        'Cheche Pong Kimchi Pong',
+        'Chibi Maruko-chan',
+        'Cho Hatsumei Boy Kanipan',
+        'Cooking Master Boy',
+        'Crayon Shin Chan',
+        'Crush Gear Turbo',
+        'Cyborg 009',
+        'Daigunder',
+        'Dash! Yonkuro',
+        'Dear Boys',
+        'Dennou Boukenki Webdiver',
+        'Detective Conan',
+        'Digimon Adventure',
+        'Digimon 02',
+        'Digimon Tamers',
+        'Digimon Savers',
+        'Dinosaur King',
+        'Doraemon',
+        'Dr.Slump',
+        'Dragon Ball',
+        'Dragon Ball Z',
+        'Dragon Ball Z Kai',
+        'Dragon Ball GT',
+        'Duel Masters',
+        'D.I.C.E',
+        'Fairy Tail',
+        'Fruits Basket',
+        'Fate/Stay Night',
+        'Fullmetal Alchemist',
+        'Fullmetal Alchemist: Brotherhood',
+        'Gatchaman',
+        'Genesis Climber Mospeada',
+        'Gensomaden Saiyuki',
+        'Get Backers',
+        'Gintama (Tv2,2009)',
+        'Gordian',
+        'Great Teacher Onizuka (GTO)',
+        'Grander Musashi',
+        'Grander Musashi RV',
+        'Gundam Age',
+        'Gundam Wing',
+        'Gundam Seed',
+        'Gundam Seed Destiny',
+        'Gundam 00 (Ntv7,2008)',
+        'Gun X Sword',
+        'Hamtaro',
+        'Haruhi Suzumiya',
+        'Hatsumei Boy Kanipan',
+        'Hunter X Hunter',
+        'Inazuma Eleven',
+        'Initial D',
+        'Inuyasha',
+        'Jigoku Shoujo',
+        'Jubei Chan',
+        'Kasumin',
+        'Katekyo Hitman Reborn (8tv)',
+        'Kekkaishi',
+        'Keroro Gunso',
+        'Kiba',
+        'Kiteretsu',
+        'Kochikame',
+        'K-On!',
+        'Lost Universe',
+        'Magic Kaito',
+        'Magical Girl Lyrical Nanoha',
+        'Magical Girl Lyrical Nanoha A’s',
+        'Mahou Sensei Negima!',
+        'MÄR',
+        'Medabots',
+        'Microman',
+        'Mirmo Zibang!',
+        'Mon Colle Knight',
+        'Monkey Typhoon',
+        'Moon Guardian',
+        'Mushrambo',
+        'Naruto',
+        'Naruto Shippuden',
+        'Ninja Boy',
+        'Ninja Hattori',
+        'One Piece',
+        'Parman',
+        'Petite Princess Yucie',
+        'Pichi Pichi Pitch',
+        'Planet Survival',
+        'Pokemon',
+        'Powerpuff Girls Z',
+        'Power Stone',
+        'Pretty Cure',
+        'Prince of Tennis',
+        'Princess 9',
+        'Princess Tutu',
+        'Ragnarok the Animation',
+        'Ranma ½',
+        'Robotech',
+        'Rocket Kidz (Genki Bakuhatsu Ganbaruger)',
+        'Rurouni Kenshin',
+        'Sailormoon',
+        'Sakura Wars',
+        'Samurai 7',
+        'School Rumble',
+        'Secret of Akko Chan',
+        'Shakugan no Shana',
+        'Shaman King',
+        'Shounen Onmyouji',
+        'Slam Dunk',
+        'Slayers',
+        'Sonic X',
+        'Sousei no Aquarion',
+        'Star Ocean EX',
+        'Sugar Sugar Rune',
+        'Super Doll Licca-chan',
+        'Super Yoyo',
+        'Sword Art Online',
+        'The Gransazers',
+        'Transformers',
+        'Taekwonkid typhoon kang',
+        'Trinity Blood',
+        'Tsubasa: Reservoir Chronicle',
+        'Tsurupika Hagemaru',
+        'Ueki no Hosoku',
+        'UFO Baby',
+        'Uniminipet',
+        'Viewtiful Joe',
+        'Yakitate Japan',
+        'You\'re Under Arrest',
+        'Yu-Gi-Oh!',
+        'Zero Tester',
+        'Zoids',
+        'Zoids Genesis',
+        'Zoids Fuzors'
+    ];
+</script>
+<script type="text/javascript">
+    googleController = {
+        init: function () {
+            google.onLoadCompleted = function (e) {
+                $('.google-api-status span:last').html('Completed');
+            }
+
+            google.setOnLoadCallback(google.onLoadCompleted);
+            google.load('search', '1');
+        },
+        initEvent: function(){
+            $('.button-search').click(function () {
+                $.each(anime, function (i, item) {
+                    googleController.imageSearch.seachImage(item);
+                });
+            });
+        },
+        imageSearch: {
+            onSearchComplete: function (imageSearch) {
+
+                // Check that we got results
+                if (imageSearch.results && imageSearch.results.length > 0) {
+                    var image = imageSearch.results[0]
+
+                    var html = '';
+
+                    var imageURL = image.url;
+
+                    var imageTitle = imageSearch.Ze ? imageSearch.Ze.replace('anime', '').trim() : '';
+
+                    html += '<li><img src="' + imageURL + '" /><span class="label">' + imageTitle + '</span></li>'
+
+                    $('.google-image-result ul').append(html);
+                }
+            },
+            seachImage: function (text) {
+
+                // Create an Image Search instance.
+                var imageSearch = new google.search.ImageSearch();
+
+                // Set searchComplete as the callback function when a search is 
+                // complete.  The imageSearch object will have results in it.
+                imageSearch.setSearchCompleteCallback(this, function () {
+                    googleController.imageSearch.onSearchComplete(imageSearch)
+                }, null);
+
+                // Find me a beautiful car.
+                imageSearch.execute("anime " + text);
+            }
+        }
+    }
+
+    googleController.init();
+    googleController.initEvent();
+</script>

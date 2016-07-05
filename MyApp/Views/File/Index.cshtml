@@ -1,0 +1,20 @@
+﻿@model MyApp.Models.FileModel
+
+@using (Html.BeginForm("GetFileInfo", "File", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <input id="file" name="file" type="file" />
+    
+    <input id="upload" name="upload" type="submit" value="Upload" />
+    
+    if(Model !=null){
+        <text>
+            <div>
+                <label>Image Taken</label>
+                <input name="imagetakendatetime" type="text" readonly="readonly" value="@Model.ImageTaken" />
+            </div>
+        </text>
+    }
+}

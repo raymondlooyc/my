@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        @Styles.Render("~/Content/mobileCss")
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        <script>
+            $(document).on("mobileinit", function () {
+                $.mobile.ajaxEnabled = false;
+            });
+        </script>
+    </head>
+    <body>
+        <div data-role="page" data-theme="b">
+            <div data-role="header">
+                <div>
+                    <a href="@Url.Action("Index","Virsual")" class="button button-search">Virsual</a>
+                    <a href="@Url.Action("Index","Google")" class="button button-search">Google</a>
+                    <a href="@Url.Action("Index","Excel")" class="button button-search">Excel</a>
+                    <a href="@Url.Action("Index","File")" class="button button-search">File</a>
+                </div>
+            </div>
+            <div data-role="content">
+                @RenderBody()
+            </div>
+            <div data-role="footer">
+            </div>
+        </div>
+    </body>
+</html>

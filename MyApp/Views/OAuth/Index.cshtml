@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "OAuth";
+}
+
+<style>
+	.success{
+		color: green;
+	}
+	.fail{
+		color: red;
+	}
+		
+</style>	
+<h1> Testing upload image service </h1>
+<INPUT TYPE="text" id="itemId" value="5"/>	
+
+<h2>Get Item By ID</h2>
+<INPUT TYPE="button" id="getItemByID" value="GetItemByID"/>
+<div id="getItemByIDResult"></div>
+<hr />
+<h2>Update Item</h2>
+<INPUT TYPE="button" id="updateItem" value="updateItem"/>
+<div id="updateItemResult"></div>
+<hr />
+<h2>Upload Image Form</h2>
+<form id="upldImageForm" enctype="multipart/form-data">
+	<label>Choose Image</label>
+	<input type="file" id="selectFile">
+</form>
+
+<script type="text/javascript">
+    var url = "http://cpimobile.tns-global.com/tnscpi-web/";
+
+	function getUrlParameter(sParam){
+	    var sPageURL = window.location.search.substring(1);
+	    var sURLVariables = sPageURL.split('&');
+	    for (var i = 0; i < sURLVariables.length; i++) {
+	        var sParameterName = sURLVariables[i].split('=');
+	        if (sParameterName[0] == sParam) {
+	            return sParameterName[1];
+	        }
+	    }
+	}
+
+	$(document).ready(function(){
+		////////////////////////////////////////
+		/// GET ITEM BY ID
+		////////////////////////////////////////
+		$("#getItemByID").click(function(){
+			console.log("calling getSuggestedItem");
+			var access_token = getUrlParameter("access_token");
+			var itemId = $("#itemId").val();
+			
+			$.ajax({ url : url + "webapp/getSuggestedItemByID"
+				   ,type: "GET"
+				   ,data: {
+					      "access_token": access_token
+					        ,"ID": itemId
+					        ,"deviceID": 2
+					        ,"osVersion" : 6
+					        ,"deviceInfo" : "Android"
+					        ,"appVersion" : 6
+					        ,"batteryLevel" : 98
+					        ,"dataStatus": "OK"
+					        }
+			}).success(function(data){
+				console.log("success");
+				$("#getItemByIDResult").html(JSON.stringify(data));
+			}).fail(function(){
+				console.log("fail");
+			});
+		});
+		////////////////////////////////////////
+		/// UPDATE ITEM
+		////////////////////////////////////////
+		$("#updateItem").click(function(){
+			console.log("calling saveSuggestedItem");
+			var access_token = getUrlParameter("access_token");
+			var itemId = $("#itemId").val();
+			
+			var item = {
+					"id" : itemId
+				   ,"itemID" : 63552
+				   ,"title" : "Gol de Argentina"
+				   ,"author": "Di Maria"
+				   ,"entries" : 1
+				   ,"position": 1
+				   ,"type" : "Movie"
+				   ,"updatedDate": ""
+			}
+			
+			item.updatedDate = new Date().getTime();
+				
+			var url = url + "webapp/saveSuggestedItem?"
+		        + "access_token="+access_token
+		        + "&deviceID=2"
+				+ "&osVersion=6"
+				+ "&deviceInfo=Android"
+				+ "&appVersion=6"
+				+ "&batteryLevel=98"
+				+ "&dataStatus=0K";
+			
+			$.ajax({ url : url
+				   ,type: "POST"
+				   ,data: JSON.stringify(item)
+				   ,"contentType": "application/json"
+			}).success(function(data){
+				console.log("success");
+				$("#getItemByIDResult").html(JSON.stringify(data));
+			}).fail(function(){
+				console.log("fail");
+			});
+		});
+		////////////////////////////////////////
+		/// UPLOAD IMAGE
+		////////////////////////////////////////
+		$("#selectFile").on("change", function(evt){
+			console.log("calling upload image");
+			//var formData = new FormData($('#upldImageForm')[0]);
+			var formData = new FormData();
+	        var files = 0;
+	        _.each($(evt.currentTarget.files), function(file) {
+	            formData.append("file", file);
+	            files++;
+	        });
+
+	        console.log("---- FILES PRCESSED = " + files);
+
+
+			var access_token = getUrlParameter("access_token");
+			var itemId = $("#itemId").val();
+			
+			var url = url + "webapp/uploadCoverImage?"
+			        + "access_token="+access_token
+			        + "&id="+itemId
+					+ "&deviceID=2"
+					+ "&osVersion=6"
+					+ "&deviceInfo=Android"
+					+ "&appVersion=6"
+					+ "&batteryLevel=98"
+					+ "&dataStatus=0K";
+
+			$.ajax({ url : url
+				   ,type: "POST"
+				   ,data: formData
+				   ,contentType: false
+				   ,processData: false
+				   ,cache: false
+			}).success(function(){
+				console.log("success");
+			}).fail(function(){
+				console.log("fail");
+			});
+
+		});
+	});
+</script>

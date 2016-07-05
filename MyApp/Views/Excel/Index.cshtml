@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Excel";
+}
+
+<h2></h2>
+
+@using (Html.BeginForm("UploadExcelTable", "Excel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <input id="excel" name="excel" type="file" />
+    
+    <input id="upload" name="upload" type="submit" value="Upload" />
+
+}
