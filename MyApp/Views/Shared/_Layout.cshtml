@@ -1,35 +1,62 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title</title>
-        <meta name="viewport" content="width=device-width" />
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        @Styles.Render("~/Content/mobileCss")
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-        @Scripts.Render("~/bundles/jquery")
-        <script>
-            $(document).on("mobileinit", function () {
-                $.mobile.ajaxEnabled = false;
-            });
-        </script>
-    </head>
-    <body>
-        <div data-role="page" data-theme="b">
-            <div data-role="header">
-                <div>
-                    <a href="@Url.Action("Index","Virsual")" class="button button-search">Virsual</a>
-                    <a href="@Url.Action("Index","Google")" class="button button-search">Google</a>
-                    <a href="@Url.Action("Index","Excel")" class="button button-search">Excel</a>
-                    <a href="@Url.Action("Index","File")" class="button button-search">File</a>
-                </div>
+<head>
+    <meta charset="utf-8" />
+    <title>RR @(String.IsNullOrEmpty(ViewBag.Title) ? "" : " - " + ViewBag.Title)</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/Content/mobileCss")
+    @Styles.Render("~/Content/themes/base")
+    @Styles.Render("~/Content/themes/ray")
+    @RenderSection("css", required: false)
+</head>
+<body>
+    <header class="navbar navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="collapsed navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a href="../" class="navbar-brand">RR</a>
             </div>
-            <div data-role="content">
-                @RenderBody()
-            </div>
-            <div data-role="footer">
-            </div>
+            <nav class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="@Url.Action("Index", "Virsual", new { Area = "RD" })" class="button button-search">Virsual</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Google", new { Area = "RD" })" class="button button-search">Google</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Excel", new { Area = "RD" })" class="button button-search">Excel</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "File", new { Area = "RD" })" class="button button-search">File</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="@Url.Action("", "Buyer", new { Area = "MB" })" class="button button-search">Buyer</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </body>
+    </header>
+    <div class="container" data-role="content">
+        @RenderBody()
+    </div>
+    <footer data-role="footer">
+    </footer>
+    @Scripts.Render("~/bundles/modernizr/modernizr")
+    @Scripts.Render("~/bundles/jquery/jquery")
+    @Scripts.Render("~/bundles/bootstrap/bootstrap")
+    @Scripts.Render("~/bundles/app/app")
+    <script>
+        $(document).on("mobileinit", function () {
+            $.mobile.ajaxEnabled = false;
+        });
+    </script>
+    @RenderSection("jsscript", required: false)
+</body>
 </html>
