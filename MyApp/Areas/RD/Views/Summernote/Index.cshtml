@@ -1,0 +1,40 @@
+﻿@section css{
+    <link href="~/libs/summernote/summernote.css" rel="stylesheet" />
+    <style type="text/css">
+    </style>
+}
+
+<button id="enable" class="btn btn-primary" disabled>Enable</button>
+<button id="disable" class="btn btn-primary">Disable</button>
+<div id="summernote">Hello Summernote</div>
+
+@section jsscript{
+    <script src="~/Libs/summernote/summernote.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                disableResizeEditor: true,
+                toolbar:[
+                    ["style", ["bold", "underline"]],
+                    ["para", ["ul", "ol","paragraph"]],
+                    ["insert", ["picture", "video","link","table"]]
+                ],
+                disableDragAndDrop: true,
+                shortcuts: false,
+                maximumImageFileSize:4194304
+            });
+
+            $('#enable').click(function (e) {
+                $(this).prop('disabled', true);
+                $('#disable').prop('disabled', false);
+                $('#summernote').summernote('enable');
+            });
+
+            $('#disable').click(function (e) {
+                $(this).prop('disabled', true);
+                $('#enable').prop('disabled', false);
+                $('#summernote').summernote('disable');
+            });
+        });
+    </script>
+}

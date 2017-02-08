@@ -13,69 +13,70 @@ namespace MyApp
             bundles.IgnoreList.Clear();
             //bundles.IgnoreList.Ignore("*.min.css", OptimizationMode.WhenDisabled);
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery/jquery").Include(
-                "~/Scripts/jquery/jquery.min.js"));
+            //script
+            bundles.Add(new ScriptBundle("~/libs/jquery/js").Include(
+                "~/libs/jquery/jquery.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap/bootstrap").Include(
-                "~/Scripts/bootstrap/bootstrap*"));
+            bundles.Add(new ScriptBundle("~/libs/bootstrap/js").Include(
+                "~/libs/bootstrap/bootstrap.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery/jqueryui").Include(
-                "~/Scripts/jquery/jquery-ui*"));
+            bundles.Add(new ScriptBundle("~/libs/jquery.ui/js").Include(
+                "~/libs/jquery.ui/jquery-ui-1.8.24.min.js",
+                "~/libs/jquery.ui/jquery.dragtable.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery/plugin").Include(
-                "~/Scripts/jquery/jquery.dragtable.js"));
+            bundles.Add(new ScriptBundle("~/libs/jquery.validate/js").Include(
+                "~/libs/jquery.validate/jquery.validate-vsdoc.js",
+                "~/libs/jquery.validate/jquery.validate.min.js",
+                "~/libs/jquery.validate/jquery.validate.unobtrusive.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery/jqueryval").Include(
-                "~/Scripts/jquery/jquery.validate*"));
+            bundles.Add(new ScriptBundle("~/libs/modernizr/js").Include(
+                "~/libs/modernizr/modernizr-2.6.2.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/modernizr/modernizr").Include(
-                "~/Scripts/modernizr/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/libs/jquery.mobile/js").Include(
+                "~/libs/jquery.mobile/jquery.mobile-1.2.0.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery/jquerymobile").Include(
-                "~/Scripts/jquery/jquery.mobile*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/umarket/umarket").Include(
-                "~/Scripts/umarket/owl.carousel.min.js",
+            bundles.Add(new ScriptBundle("~/libs/umarket/js").Include(
+                "~/libs/owl.carousel/owl.carousel.min.js",
                 "~/Scripts/umarket/custom.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/app/app").Include(
+            bundles.Add(new ScriptBundle("~/libs/app/js").Include(
                 "~/Scripts/app/app.js"));
 
-            bundles.Add(new StyleBundle("~/Content/mobilecss").Include(
-                "~/Content/jquery.mobile*"));
 
-            bundles.Add(new StyleBundle("~/Content/themes/jqueryui/css").Include(
-                "~/Content/themes/jqueryui/jquery.ui.core.css",
-                "~/Content/themes/jqueryui/jquery.ui.resizable.css",
-                "~/Content/themes/jqueryui/jquery.ui.selectable.css",
-                "~/Content/themes/jqueryui/jquery.ui.accordion.css",
-                "~/Content/themes/jqueryui/jquery.ui.autocomplete.css",
-                "~/Content/themes/jqueryui/jquery.ui.button.css",
-                "~/Content/themes/jqueryui/jquery.ui.dialog.css",
-                "~/Content/themes/jqueryui/jquery.ui.slider.css",
-                "~/Content/themes/jqueryui/jquery.ui.tabs.css",
-                "~/Content/themes/jqueryui/jquery.ui.datepicker.css",
-                "~/Content/themes/jqueryui/jquery.ui.progressbar.css",
-                "~/Content/themes/jqueryui/jquery.ui.theme.css"));
+            //style
+            bundles.Add(new StyleBundle("~/libs/jquery.mobile/css").Include(
+                "~/libs/jquery.mobile/jquery.mobile-1.2.0.min.css"));
 
+            bundles.Add(new StyleBundle("~/libs/jquery.ui/css").Include(
+                "~/libs/jquery.ui/jquery.ui.core.css",
+                "~/libs/jquery.ui/jquery.ui.resizable.css",
+                "~/libs/jquery.ui/jquery.ui.selectable.css",
+                "~/libs/jquery.ui/jquery.ui.accordion.css",
+                "~/libs/jquery.ui/jquery.ui.autocomplete.css",
+                "~/libs/jquery.ui/jquery.ui.button.css",
+                "~/libs/jquery.ui/jquery.ui.dialog.css",
+                "~/libs/jquery.ui/jquery.ui.slider.css",
+                "~/libs/jquery.ui/jquery.ui.tabs.css",
+                "~/libs/jquery.ui/jquery.ui.datepicker.css",
+                "~/libs/jquery.ui/jquery.ui.progressbar.css",
+                "~/libs/jquery.ui/jquery.ui.theme.css"));
 
-            bundles.Add(new StyleBundle("~/Content/themes/umarket").Include(
-                "~/Content/themes/base/bootstrap.min.css",
-                "~/Content/themes/base/font-awesome.min.css",
-                "~/Content/themes/umarket/owl.carousel.css",
-                "~/Content/themes/umarket/color/red.css",
-                "~/Content/themes/umarket/custom.css"));
+            bundles.Add(new StyleBundle("~/libs/umarket/css").Include(
+                "~/libs/bootstrap/bootstrap.min.css",
+                "~/libs/font-awesome/font-awesome.min.css",
+                "~/libs/umarket/owl.carousel.css",
+                "~/libs/umarket/color/red.css",
+                "~/libs/umarket/custom.css"));
 
+            bundles.Add(new StyleBundle("~/libs/base/css").Include(
+                "~/libs/bootstrap/bootstrap.min.css",
+                "~/libs/font-awesome/font-awesome.min.css"));
 
-            bundles.Add(new StyleBundle("~/Content/themes/base").Include(
-                "~/Content/themes/base/bootstrap.min.css",
-                "~/Content/themes/base/font-awesome.min.css"));
+            bundles.Add(new StyleBundle("~/libs/ray/css").Include(
+                "~/libs/ray/ray.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/site.css"));
-
-            bundles.Add(new StyleBundle("~/Content/themes/ray").Include(
-                "~/Content/themes/ray.css"));
         }
     }
 }

@@ -7,7 +7,53 @@
     </style>
 }
 
+<button id="btn-login-ms">Login to MS</button>
+
 @section jsscript{
     <script type="text/javascript">
+        var msClientId = "@MyApp.Helper.MS.ApplicationId"
+        window.callback = function (obj) {
+            data = JSON.parse(obj);
+            console.log(obj);
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetAccessToken", "Home", new { Area = "RD" })",
+                data: {
+                    'authorizationCode': data.code
+                },
+                cache: false,
+                success: function (result) {
+
+                }
+            });
+        }
+
+
+        var MsController = new function () {
+            var clientId = msClientId;
+            var scopes = "wl.signin wl.basic"
+            var responseType = "code";
+            var redirectUrl = "http://localhost:20000/rd/home/callback";
+
+            this.authorize = function () {
+                var url = "https://login.live.com/oauth20_authorize.srf"
+                + "?client_id=CLIENT_ID"
+                + "&scope=SCOPES"
+                + "&response_type=RESPONSE_TYPE"
+                + "&redirect_uri=REDIRECT_URL";
+
+                url = url.replace(/CLIENT_ID/g, clientId);
+                url = url.replace(/SCOPES/g, encodeURI(scopes));
+                url = url.replace(/RESPONSE_TYPE/g, encodeURI(responseType));
+                url = url.replace(/REDIRECT_URL/g, encodeURI(redirectUrl));
+
+                var myWindow = window.open(url, "_blank", "width=500,height=480");
+            }
+        }
+
+        $('#btn-login-ms').on('click', function (e) {
+            MsController.authorize();
+        });
     </script>
 }

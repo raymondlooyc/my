@@ -17,14 +17,15 @@ namespace MyApp.Areas.RD
             context.MapRoute(
                 "RD_Default",
                 "RD/{controller}/{action}/{id}",
-                new { AreaName = "RD", controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new { controller = "Home" },
                 namespaces: new[] { "MyApp.Areas.RD.Controllers" }
             );
 
             context.MapRoute(
                  "Defaultdas",
                  "{AreaName}/{controller}/{action}/{id}",
-                 new { AreaName = "RD", controller = "Home", action = "Index", id = UrlParameter.Optional }
+                 new { AreaName = "RD", controller = "Summernote", action = "Index", id = UrlParameter.Optional }
              );
         }
     }

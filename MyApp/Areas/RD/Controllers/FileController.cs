@@ -1,4 +1,4 @@
-﻿using MyApp.Models;
+﻿using MyApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

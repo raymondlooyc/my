@@ -8,9 +8,8 @@
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,900,800' rel='stylesheet' type='text/css'>
 
-    @Styles.Render("~/Content/mobilecss")
-    @Styles.Render("~/Content/themes/umarket")
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/libs/jquery.mobile/css")
+    @Styles.Render("~/libs/umarket/css")
     @RenderSection("css", required: false)
 </head>
 <body>
@@ -400,13 +399,12 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
-    @Scripts.Render("~/bundles/jquery/jquery")
-    @Scripts.Render("~/bundles/modernizr/modernizr")
-    @Scripts.Render("~/bundles/jquery/jqueryui")
-    @Scripts.Render("~/bundles/bootstrap/bootstrap")
-    @Scripts.Render("~/bundles/jquery/plugin")
-    @Scripts.Render("~/bundles/umarket/umarket")
+    
+    @Scripts.Render("~/libs/modernizr/js")
+    @Scripts.Render("~/libs/jquery/js")
+    @Scripts.Render("~/libs/bootstrap/js")
+    @Scripts.Render("~/libs/jquery.ui/js")
+    @Scripts.Render("~/libs/umarket/js")
     @RenderSection("jsscript", required: false)
 </body>
 </html>
